@@ -1,12 +1,15 @@
 import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, AIMessage
-from langsmith import Client
 from langchain.callbacks.base import BaseCallbackHandler
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder, HumanMessagePromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import LLMChain
 from get_prompt import load_prompt, load_prompt_with_questions
+
+import dotenv
+dotenv.load_dotenv()
+
 
 st.set_page_config(page_title="LangChain: Getting Started Class", page_icon="🦜")
 st.title("🦜 LangChain: Getting Started Class")
@@ -60,9 +63,6 @@ lesson_guides = {
     }
 }
 
-# Initialize LangSmith client
-client = Client()
-
 # Lesson selection sidebar
 lesson_selection = st.sidebar.selectbox("Select Lesson", list(lesson_guides.keys()))
 
@@ -84,9 +84,9 @@ if st.session_state.get("current_lesson") != lesson_selection or st.session_stat
 st.markdown(f"**{lesson_selection}**")
 st.write(lesson_description)
 
-# Message handling and interaction
-def send_feedback(run_id, score):
-    client.create_feedback(run_id, "user_score", score=score)
+# # Message handling and interaction
+# def send_feedback(run_id, score):
+#     client.create_feedback(run_id, "user_score", score=score)
 
 for msg in st.session_state["messages"]:
     if isinstance(msg, HumanMessage):
@@ -116,13 +116,3 @@ if prompt := st.chat_input():
         st.session_state.messages.append(HumanMessage(content=prompt))
         st.session_state.messages.append(AIMessage(content=response[chain.output_key]))
         run_id = response["__run"].run_id
-
-        col_blank, col_text, col1, col2 = st.columns([10, 2, 1, 1])
-        with col_text:
-            st.text("Feedback:")
-
-        with col1:
-            st.button("👍", on_click=send_feedback, args=(run_id, 1))
-
-        with col2:
-            st.button("👎", on_click=send_feedback, args=(run_id, 0))
