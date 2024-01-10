@@ -1,0 +1,73 @@
+Lesson 1: Introduction to HTML and Creating Your First Web Page
+--------------------------------------------------------------
+
+## Content
+
+### What is HTML?
+
+HTML, which stands for HyperText Markup Language, is the foundation of web content and structure. It is not a programming language but a markup language meant to structure web page content. HTML consists of a series of elements that you can use to contain different parts of your web page content.
+
+### Structure of an HTML document
+
+An HTML document contains structured content wrapped within HTML tags. The basic structure typically includes doctype declaration, html, head, and body tags.
+
+### Basic HTML Tags
+
+Common HTML tags include headings (`h1` to `h6`), paragraphs (`p`), anchors (`a`), images (`img`), unordered lists (`ul`), ordered lists (`ol`), list items (`li`), line breaks (`br`), and horizontal lines (`hr`).
+
+### Special Characters and Entities
+
+HTML uses entities to represent special characters, like `&amp;` for an ampersand (`&`), `&lt;` for a less-than sign (`<`), or `&gt;` for a greater-than sign (`>`).
+
+## Example
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Web Page</title>
+</head>
+<body>
+    <h1>Welcome to my webpage!</h1>
+    <p>This is a paragraph about me.</p>
+    <ul>
+        <li>Reading</li>
+        <li>Gaming</li>
+        <li>Cooking</li>
+    </ul>
+    <br>
+    <hr>
+    <p>Contact me at <a href="mailto:email@example.com">email@example.com</a></p>
+    <img src="path-to-image.jpg" alt="Description of image">
+</body>
+</html>
+```
+
+## Questions
+
+Q1: What tag would you use for the main heading of your web page?
+A1: The `h1` tag is used for the main heading of a web page.
+
+Q2: How do you insert a line break in your HTML content?
+A2: The `br` tag is used to insert a line break in HTML content.
+
+Q3: How do you add an image to your web page?
+A3: Use the `img` tag with the `src` attribute to specify the path of the image and the `alt` attribute for a description.
+
+## Answers
+
+1. For the main heading on your web page, you should use the `h1` tag.
+2. To insert a line break in your HTML content, use the `br` tag.
+3. To add an image to your web page, use the `img` tag and provide the image source via the `src` attribute, as well as an alternative text with the `alt` attribute, e.g., `<img src="image.jpg" alt="Descriptive Text">`.
+
+## Assignment
+
+Now it's your turn to create a personal webpage on Replit.com. Your page should include:
+
+1. A headline using the `h1` tag.
+2. A paragraph about yourself with the `p` tag.
+3. A list of your favorite hobbies using the `ul` and `li` tags.
+4. An image related to one of your hobbies using the `img` tag.
+
+Make sure to save and run your code in Replit to see your webpage in action!
+

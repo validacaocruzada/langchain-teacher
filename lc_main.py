@@ -33,34 +33,20 @@ class StreamHandler(BaseCallbackHandler):
 
 # Lesson selection dictionary
 lesson_guides = {
-    "Lesson 1: Getting Started with LangChain": {
+    "Lesson 1: HTML": {
+        "file": "lc_guides/html.txt",
+        "description": "This lesson is HTML."
+    },
+
+    "Lesson OLD: Getting Started with LangChain": {
         "file": "lc_guides/getting_started_guide.txt",
         "description": "This lesson covers the basics of getting started with LangChain."
     },
-    "Lesson 2: Prompts": {
-        "file": "lc_guides/prompt_guide.txt",
-        "description": "This lesson focuses on prompts and their usage."
-    },
-    "Lesson 3: Language Models": {
-        "file": "lc_guides/models_guide.txt",
-        "description": "This lesson provides an overview of language models."
-    },
-    "Lesson 4: Memory": {
-        "file": "lc_guides/memory_guide.txt",
-        "description": "This lesson is about Memory."
-    },
-    "Lesson 5: Chains": {
-        "file": "lc_guides/chains_guide.txt",
-        "description": "This lesson provides information on Chains in LangChain, their types, and usage."
-    },
-    "Lesson 6: Retrieval": {
-        "file": "lc_guides/retrieval_guide.txt",
-        "description": "This lesson provides information on indexing and retrieving information using LangChain."
-    },
-    "Lesson 7: Agents": {
+    "Lesson OLD: Agents": {
         "file": "lc_guides/agents_guide.txt",
         "description": "This lesson provides information on agents, tools, and toolkits."
     }
+    
 }
 
 # Lesson selection sidebar
@@ -78,7 +64,8 @@ lesson_type = st.sidebar.radio("Select Lesson Type", ["Instructions based lesson
 if st.session_state.get("current_lesson") != lesson_selection or st.session_state.get("current_lesson_type") != lesson_type:
     st.session_state["current_lesson"] = lesson_selection
     st.session_state["current_lesson_type"] = lesson_type
-    st.session_state["messages"] = [AIMessage(content="Welcome! This short course will help you get started with LangChain. Let me know when you're all set to jump in!")]
+    #st.session_state["messages"] = [AIMessage(content="Welcome! This short course will help you get started with LangChain. Let me know when you're all set to jump in!")]
+    st.session_state["messages"] = [AIMessage(content="Welcome! This short course will help you get started. Start by asking me about the milestones table for this lesson!")]
 
 # Display lesson name and description
 st.markdown(f"**{lesson_selection}**")
@@ -99,7 +86,7 @@ if prompt := st.chat_input():
 
     with st.chat_message("assistant"):
         stream_handler = StreamHandler(st.empty())
-        model = ChatOpenAI(streaming=True, callbacks=[stream_handler], model="gpt-3.5-turbo-16k")
+        model = ChatOpenAI(streaming=True, callbacks=[stream_handler], model="gpt-3.5-turbo-1106")
 
         if lesson_type == "Instructions based lesson":
             prompt_template = load_prompt(content=lesson_content)
